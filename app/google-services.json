@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "655701459953",
+    "firebase_url": "https://sponsy-e385e.firebaseio.com",
+    "project_id": "sponsy-e385e",
+    "storage_bucket": "sponsy-e385e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:655701459953:android:1daba3d3b8cc821c16ba50",
+        "android_client_info": {
+          "package_name": "me.ogabeezle.sponsy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "655701459953-3djvn0fige9mfm0hbk62k2b8sjl6ph1p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "me.ogabeezle.sponsy",
+            "certificate_hash": "a75f31e035911eb4291fee604bcbbf587adcbfae"
+          }
+        },
+        {
+          "client_id": "655701459953-ip05tod140rlprbvsj30pohjeme017ri.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvd37oPwWtFHDAyg9TdQ18Dg7cFN28E4o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "655701459953-ip05tod140rlprbvsj30pohjeme017ri.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
