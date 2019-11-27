@@ -1,4 +1,4 @@
-package me.ogabeezle.sponsy.ui.profile;
+package me.ogabeezle.sponsy.ui.signup;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,25 +11,26 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import me.ogabeezle.sponsy.R;
-import me.ogabeezle.sponsy.ui.signup.SignupFragment;
+import me.ogabeezle.sponsy.ui.login.LoginFragment;
 
-public class ProfileFragment extends Fragment {
+public class SignupFragment extends Fragment {
+    @Nullable
 
     View v;
 
-
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        v= inflater.inflate(R.layout.login_fragment, container, false);
+        v= inflater.inflate(R.layout.signup_fragment, container, false);
         loadButton();
         return v;
     }
 
     void loadButton(){
-        TextView daftarButton = v.findViewById(R.id.daftar_button);
+        TextView daftarButton = v.findViewById(R.id.masuk_button);
         daftarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadFragment(new SignupFragment());
+                loadFragment(new LoginFragment());
             }
         });
     }
@@ -43,5 +44,4 @@ public class ProfileFragment extends Fragment {
         }
         return false;
     }
-
 }

@@ -1,4 +1,4 @@
-package me.ogabeezle.sponsy.ui.profile;
+package me.ogabeezle.sponsy.ui.login;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,11 +13,12 @@ import androidx.fragment.app.Fragment;
 import me.ogabeezle.sponsy.R;
 import me.ogabeezle.sponsy.ui.signup.SignupFragment;
 
-public class ProfileFragment extends Fragment {
+public class LoginFragment extends Fragment {
 
     View v;
 
-
+    @Nullable
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v= inflater.inflate(R.layout.login_fragment, container, false);
         loadButton();
@@ -43,5 +44,4 @@ public class ProfileFragment extends Fragment {
         }
         return false;
     }
-
 }

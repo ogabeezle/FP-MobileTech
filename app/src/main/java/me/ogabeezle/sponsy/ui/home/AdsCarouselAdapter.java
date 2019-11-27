@@ -31,8 +31,6 @@ public class AdsCarouselAdapter extends RecyclerView.Adapter<AdsCarouselAdapter.
     @Override
     public void onBindViewHolder(@NonNull CarouselHolder holder, int position) {
         final AdsCarouselModel model=arr.get(position);
-//        int imageResource = context.getResources().getIdentifier("@drawable/testkotak", null, context.getPackageName());
-//        Drawable res = context.getResources().getDrawable(imageResource);
         holder.iklan.setImageResource(model.getAdsPicture());
     }
 
