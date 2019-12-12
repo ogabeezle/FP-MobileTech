@@ -5,5 +5,8 @@
     <color name="colorAccent">#D81B60</color>
     <color name="white">#ffffff</color>
     <color name="lightGrey">#CACACA</color>
+    <color name="Grey">#ABABAB</color>
+    <color name="verylightGrey">#EBEBEB</color>
     <color name="hijauSponsy">#3BC356</color>
+    <color name="verydarkgrey">#707070</color>
 </resources>
