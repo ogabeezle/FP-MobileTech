@@ -1,4 +1,4 @@
-package me.ogabeezle.sponsy.ui.home;
+package me.ogabeezle.sponsy.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,15 +10,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import java.util.List;
 
+import me.ogabeezle.sponsy.Model.Account;
 import me.ogabeezle.sponsy.R;
 
-public class ItemCarouselAdapter extends RecyclerView.Adapter<ItemCarouselAdapter.CarouselHolder> {
-    private ArrayList<ItemCarouselModel> arr;
+public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.CarouselHolder> {
+    private List<Account> arr;
     private Context context;
 
-    ItemCarouselAdapter(ArrayList<ItemCarouselModel> arr, Context context) {
+    public AccountAdapter(List<Account> arr, Context context) {
         this.context = context;
         this.arr = arr;
     }
@@ -31,11 +32,11 @@ public class ItemCarouselAdapter extends RecyclerView.Adapter<ItemCarouselAdapte
 
     @Override
     public void onBindViewHolder(@NonNull CarouselHolder holder, int position) {
-        final ItemCarouselModel model = arr.get(position);
-        holder.itemTitle.setText(model.getTitle());
+        final Account model = arr.get(position);
+        holder.itemTitle.setText(model.getName());
         holder.itemPic.setImageResource(model.getPicture());
-        holder.itemDate.setText(model.getDateString());
-        holder.itemLocation.setText(model.getLocation());
+        holder.itemDate.setText(model.getContactName());
+        holder.itemLocation.setText(model.getAddress());
     }
 
     @Override
