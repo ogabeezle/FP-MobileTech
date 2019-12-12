@@ -1,0 +1,191 @@
+<LinearLayout
+    android:id="@+id/main_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar"
+        android:elevation="10dp"
+        >
+        <LinearLayout
+            android:id="@+id/judul"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerVertical="true"
+            android:background="@color/white"
+            android:elevation="10dp"
+            android:layout_centerHorizontal="true">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal|center_vertical"
+                android:layout_margin="15dp"
+                android:id="@+id/search_header"
+                android:layout_height="wrap_content">
+                <View
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/ic_arrow_back_grey_24dp"/>
+                <LinearLayout
+                    android:id="@+id/search_bar"
+                    android:layout_width="300dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/square_search">
+                    <View
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/search_icon_grey"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cari Acara..."
+                        android:textColor="@color/verydarkgrey"
+                        android:layout_gravity="center_vertical"/>
+                </LinearLayout>
+            </LinearLayout>
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:layout_margin="18dp">
+
+               <ImageView
+                   android:layout_width="100dp"
+                   android:layout_height="100dp"
+                   android:src="@drawable/image">
+
+               </ImageView>
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginLeft="10dp"
+                   android:layout_gravity="center_vertical"
+                   android:orientation="vertical">
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Schematics 2019"
+                       android:textSize="20dp"
+                       android:fontFamily="@font/opensansbold">
+
+                   </TextView>
+                   <LinearLayout
+                       android:layout_width="wrap_content"
+                       android:layout_height="30dp"
+                       android:layout_marginTop="10dp"
+                       android:orientation="horizontal">
+                           <androidx.cardview.widget.CardView
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               app:cardCornerRadius="5dp">
+
+                               <LinearLayout
+                                   android:layout_width="120dp"
+                                   android:layout_height="wrap_content"
+                                   android:gravity="center_vertical|center_horizontal"
+
+                                   android:background="@drawable/button_kirimpesan"
+                                   android:padding="5dp">
+
+                                   <TextView
+                                       android:layout_width="wrap_content"
+                                       android:layout_height="wrap_content"
+                                       android:layout_marginLeft="2dp"
+                                       android:layout_marginRight="10dp"
+                                       android:fontFamily="@font/opensansbold"
+                                       android:text="Kirim Pesan"
+                                       android:textColor="@color/Grey"
+                                       android:textSize="10dp" />
+                                   <ImageView
+                                       android:layout_width="20dp"
+                                       android:layout_height="20dp"
+                                       android:src="@drawable/ic_message_grey_24dp"></ImageView>
+                               </LinearLayout>
+                           </androidx.cardview.widget.CardView>
+                           <androidx.cardview.widget.CardView
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               app:cardCornerRadius="5dp">
+
+                               <LinearLayout
+                                   android:layout_width="120dp"
+                                   android:layout_height="30dp"
+                                   android:gravity="center_vertical|center_horizontal"
+                                   android:layout_marginLeft="10dp"
+                                   android:background="@drawable/button_apply"
+                                   android:padding="5dp">
+
+                                   <TextView
+                                       android:layout_width="wrap_content"
+                                       android:layout_height="wrap_content"
+                                       android:layout_marginLeft="2dp"
+                                       android:layout_marginRight="10dp"
+                                       android:fontFamily="@font/opensansbold"
+                                       android:text="Apply"
+                                       android:textColor="@color/white"
+                                       android:textSize="10dp" />
+
+                               </LinearLayout>
+                           </androidx.cardview.widget.CardView>
+                   </LinearLayout>
+
+               </LinearLayout>
+           </LinearLayout>
+            <LinearLayout
+                android:layout_marginLeft="20dp"
+            android:layout_below="@id/judul"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Deksripsi"
+                android:fontFamily="@font/opensansbold"
+                android:textColor="@color/hijauSponsy">
+
+            </TextView>
+            <View
+                android:layout_width="70dp"
+                android:layout_height="5dp"
+                android:background="@color/hijauSponsy"></View>
+        </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+    <TextView
+        android:padding="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/opensansreguler"
+        android:text="Schematics National Programming Contest (NPC)
+adalah sebuah kompetisi pemrograman tingkat
+nasional yang akan menguji kemampuan peserta
+dalam berpikir logika serta kemampuan algoritma
+dan pemrograman untuk memecahkan berbagai
+masalah yang ada dalam durasi waktu tertentu.
+\n\n
+Schematics National Logic Competition (NLC)
+merupakan sebuah kompetisi yang menguji
+kemampuan berpikir logis dan analitis dalam
+memecahkan serangkaian masalah yang ada.
+Masalah yang diberikan bervariasi; mulai dari
+soal tertulis hingga permainan yang mengasah
+otak. NLC akan dilakukan secara berkelompok
+">
+
+    </TextView>
+</LinearLayout>
