@@ -1,6 +1,7 @@
 package me.ogabeezle.sponsy.Adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 
@@ -31,10 +37,16 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.Carousel
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CarouselHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final CarouselHolder holder, int position) {
         final Account model = arr.get(position);
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(model.getImageUrl());
+        storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Glide.with(context).load(uri).into(holder.itemPic);
+            }
+        });
         holder.itemTitle.setText(model.getName());
-        holder.itemPic.setImageResource(model.getPicture());
         holder.itemDate.setText(model.getContactName());
         holder.itemLocation.setText(model.getAddress());
     }

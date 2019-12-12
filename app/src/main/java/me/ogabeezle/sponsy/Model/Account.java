@@ -1,6 +1,12 @@
 package me.ogabeezle.sponsy.Model;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 import com.google.gson.annotations.SerializedName;
+
+import java.io.IOException;
+import java.net.URL;
 
 import me.ogabeezle.sponsy.R;
 
@@ -19,7 +25,7 @@ public class Account {
     private String address;
     @SerializedName("deskripsi")
     private String deskripsi;
-    private int picture;
+    private int picture=R.drawable.pasar_kreatif;
 
     public Account(){}
 
@@ -33,6 +39,11 @@ public class Account {
         this.deskripsi = deskripsi;
 //        this.picture=picture;
         this.picture= R.drawable.pasar_kreatif;
+    }
+
+    public Bitmap getBitmap() throws IOException {
+        URL url = new URL(imageUrl);
+        return BitmapFactory.decodeStream(url.openConnection().getInputStream());
     }
 
     public int getPicture() {

@@ -53,8 +53,8 @@ public class HomeFragment extends Fragment {
         adsCarousel.setAdapter(adsCarouselAdapter);
 
 
-//        recommendForYouCarousel = (RecyclerView) root.findViewById(R.id.rekomendasiacaracarousel);
-//        recommendForYouCarousel.setLayoutManager(new LinearLayoutManager(root.getContext(),RecyclerView.HORIZONTAL,false));
+        recommendForYouCarousel = (RecyclerView) root.findViewById(R.id.rekomendasiacaracarousel);
+        recommendForYouCarousel.setLayoutManager(new LinearLayoutManager(root.getContext(),RecyclerView.HORIZONTAL,false));
 //        recommendedItemCarouselAdapter = new ItemCarouselAdapter(recommendForYouItem,root.getContext());
 //        recommendForYouCarousel.setAdapter(recommendedItemCarouselAdapter);
 //
@@ -80,7 +80,7 @@ public class HomeFragment extends Fragment {
                 Log.d("Retrofit Get", "Jumlah data Kontak: " +
                         String.valueOf(accounts.size()));
                 accountAdapter = new AccountAdapter(accounts,root.getContext());
-                ((RecyclerView)root.findViewById(R.id.rekomendasiacaracarousel)).setAdapter(accountAdapter);
+                recommendForYouCarousel.setAdapter(accountAdapter);
             }
 
             @Override
