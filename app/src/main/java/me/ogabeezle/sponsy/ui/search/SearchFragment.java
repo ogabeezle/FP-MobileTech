@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import me.ogabeezle.sponsy.Adapter.AccountAdapter;
+import me.ogabeezle.sponsy.Adapter.AccountSearchAdapter;
 import me.ogabeezle.sponsy.Model.GetAccount;
 import me.ogabeezle.sponsy.R;
 import me.ogabeezle.sponsy.Rest.ApiClient;
@@ -28,6 +28,7 @@ public class SearchFragment extends Fragment {
 
     View v;
     EditText editText;
+    SearchFragment temp;
 
     @Nullable
     @Override
@@ -38,6 +39,7 @@ public class SearchFragment extends Fragment {
     }
 
     void loadButton(){
+        temp=this;
         editText = v.findViewById(R.id.search_bar1);
         View searchIcon = v.findViewById(R.id.search_icon);
         searchIcon.setOnClickListener(new View.OnClickListener() {
@@ -51,7 +53,7 @@ public class SearchFragment extends Fragment {
                         Log.d(TAG, "onResponse: "+editText.getText()+response.body().getData().size());
                         RecyclerView listItem = (RecyclerView) v.findViewById(R.id.listItem);
                         listItem.setLayoutManager(new LinearLayoutManager(v.getContext(),RecyclerView.HORIZONTAL,false));
-                        listItem.setAdapter(new AccountAdapter(response.body().getData(),v.getContext()));
+                        listItem.setAdapter(new AccountSearchAdapter(response.body().getData(),v.getContext(),temp));
                     }
 
                     @Override
@@ -63,7 +65,7 @@ public class SearchFragment extends Fragment {
         });
     }
 
-    private boolean loadFragment(Fragment fragment) {
+    public boolean loadFragment(Fragment fragment) {
         if (fragment != null) {
             getFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, fragment)

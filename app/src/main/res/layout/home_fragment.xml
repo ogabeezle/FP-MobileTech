@@ -84,6 +84,7 @@
                     android:layout_height="wrap_content"
                     app:cardElevation="0dp">
                     <LinearLayout
+                        android:id="@+id/edukasi_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -105,6 +106,7 @@
                     app:cardElevation="0dp"
                     android:layout_height="wrap_content">
                     <LinearLayout
+                        android:id="@+id/seni_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -126,6 +128,7 @@
                     app:cardElevation="0dp"
                     android:layout_height="wrap_content">
                     <LinearLayout
+                        android:id="@+id/olahraga_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -147,6 +150,7 @@
                     app:cardElevation="0dp"
                     android:layout_height="wrap_content">
                     <LinearLayout
+                        android:id="@+id/music_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -168,6 +172,7 @@
                     app:cardElevation="0dp"
                     android:layout_height="wrap_content">
                     <LinearLayout
+                        android:id="@+id/others_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">

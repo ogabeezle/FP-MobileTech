@@ -27,6 +27,7 @@ import me.ogabeezle.sponsy.Model.GetAccount;
 import me.ogabeezle.sponsy.R;
 import me.ogabeezle.sponsy.Rest.ApiClient;
 import me.ogabeezle.sponsy.Rest.ApiInterface;
+import me.ogabeezle.sponsy.ui.category.CategoryFragment;
 import me.ogabeezle.sponsy.ui.search.SearchFragment;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -82,8 +83,43 @@ public class HomeFragment extends Fragment {
                 loadFragment(new SearchFragment());
             }
         });
+        LinearLayout edukasiButton = root.findViewById(R.id.edukasi_button);
+        edukasiButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFragment(new CategoryFragment("edukasi"));
+            }
+        });
+        LinearLayout seniButton = root.findViewById(R.id.seni_button);
+        seniButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFragment(new CategoryFragment("seni"));
+            }
+        });
+        LinearLayout olahragaButton = root.findViewById(R.id.olahraga_button);
+        olahragaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFragment(new CategoryFragment("olahraga"));
+            }
+        });
+        LinearLayout musicButton = root.findViewById(R.id.music_button);
+        musicButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFragment(new CategoryFragment("musik"));
+            }
+        });
+        LinearLayout othersButton = root.findViewById(R.id.others_button);
+        othersButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFragment(new CategoryFragment("lainnya"));
+            }
+        });
     }
-    private boolean loadFragment(Fragment fragment) {
+    public boolean loadFragment(Fragment fragment) {
         if (fragment != null) {
             getFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, fragment)
@@ -93,16 +129,23 @@ public class HomeFragment extends Fragment {
         return false;
     }
     void loadData(){
-
+        final HomeFragment temp=this;
         Call<GetAccount> accountCall=mApiInterface.getAccount();
         accountCall.enqueue(new Callback<GetAccount>() {
             @Override
             public void onResponse(Call<GetAccount> call, Response<GetAccount> response) {
                 if(response.body().getData()==null)return;
                 List<Account> accounts= response.body().getData();
+                List<Account> newacc=new ArrayList<>();
+                int i=0;
+                for(Account acc :accounts){
+                    if(i==10) break;
+                    newacc.add(acc);
+                    i++;
+                }
                 Log.d("Retrofit Get", "Jumlah data Kontak: " +
                         String.valueOf(accounts.size()));
-                accountAdapter = new AccountAdapter(accounts,root.getContext());
+                accountAdapter = new AccountAdapter(newacc,root.getContext(),temp);
                 recommendForYouCarousel.setAdapter(accountAdapter);
             }
 

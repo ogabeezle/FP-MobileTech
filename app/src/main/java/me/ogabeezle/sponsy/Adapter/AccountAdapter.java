@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,14 +21,18 @@ import java.util.List;
 
 import me.ogabeezle.sponsy.Model.Account;
 import me.ogabeezle.sponsy.R;
+import me.ogabeezle.sponsy.ui.home.HomeFragment;
+import me.ogabeezle.sponsy.ui.deskripsi.DeskripsiFragment;
 
 public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.CarouselHolder> {
     private List<Account> arr;
     private Context context;
+    private HomeFragment fragment;
 
-    public AccountAdapter(List<Account> arr, Context context) {
+    public AccountAdapter(List<Account> arr, Context context,HomeFragment fragment) {
         this.context = context;
         this.arr = arr;
+        this.fragment=fragment;
     }
 
     @NonNull
@@ -49,6 +54,12 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.Carousel
         holder.itemTitle.setText(model.getName());
         holder.itemDate.setText(model.getContactName());
         holder.itemLocation.setText(model.getAddress());
+        holder.card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragment.loadFragment(new DeskripsiFragment(model));
+            }
+        });
     }
 
     @Override
@@ -61,9 +72,11 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.Carousel
         TextView itemTitle;
         TextView itemDate;
         TextView itemLocation;
+        LinearLayout card;
 
         public CarouselHolder(@NonNull View itemView) {
             super(itemView);
+            card=(LinearLayout) itemView.findViewById(R.id.card);
             itemPic = (ImageView) itemView.findViewById(R.id.itempic);
             itemTitle = (TextView) itemView.findViewById(R.id.itemtitle);
             itemDate = (TextView) itemView.findViewById(R.id.itemdate);
