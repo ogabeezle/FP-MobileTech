@@ -6,17 +6,22 @@ from Token import Token
 import os
 from dotenv import load_dotenv
 load_dotenv()
-
+print(os.getenv('USER'))
 
 class Authentication:
     def __init__(self, *args):
         self.db = Database()
         self.db.connect(
-            os.getenv('AUTH_HOST'),
-            os.getenv('AUTH_PORT'),
-            os.getenv('AUTH_DB'),
-            os.getenv('USER'),
-            os.getenv('PASS'))
+            "localhost",
+            "3306",
+            "sponsy",
+            "chael",
+            "wakakaka1")
+            #os.getenv('AUTH_HOST'),
+            #os.getenv('AUTH_PORT'),
+            #os.getenv('AUTH_DB'),
+            #os.getenv('USER'),
+            #os.getenv('PASS')))
 
     def return_message(self, code, message, data):
         message = dict(code=code, message=message, data=data)
@@ -42,11 +47,11 @@ class Authentication:
             VALUES ('{}','{}','{}','{}','{}','{}',{},'{}')""". format(
             data['name'],
             data['email'],
-            data['contact_person'],
+            data['contactPerson'],
             data['password'],
-            data['image_url'],
+            data['imageUrl'],
             data['address'],
-            data['account_type'],
+            data['accountType'],
             data['deskripsi'])
         result = self.db.run_query(query)
         print(result)
@@ -75,9 +80,12 @@ class Authentication:
             return self.return_message(400, "token has been expired", None)
 
     def getAll(self):
-        query = """select * from account"""
-        result = self.db.run_query(query)['data']
+        query = """select * from account order by id asc"""
+        print(query)
+        result = self.db.run_query(query)
         hasil = []
+        print(result)
+        result=result["data"]
         for item in result:
             hasil.append({
                 'id': item[0],
