@@ -6,6 +6,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -26,6 +27,7 @@ import me.ogabeezle.sponsy.Model.GetAccount;
 import me.ogabeezle.sponsy.R;
 import me.ogabeezle.sponsy.Rest.ApiClient;
 import me.ogabeezle.sponsy.Rest.ApiInterface;
+import me.ogabeezle.sponsy.ui.search.SearchFragment;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -67,15 +69,36 @@ public class HomeFragment extends Fragment {
         SnapHelper helper = new GravitySnapHelper(Gravity.CENTER);
         helper.attachToRecyclerView(adsCarousel);
         helper.attachToRecyclerView(recommendForYouCarousel);
+        loadButton();
         return root;
     }
 
+
+    void loadButton(){
+        LinearLayout daftarButton = root.findViewById(R.id.search_bar);
+        daftarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFragment(new SearchFragment());
+            }
+        });
+    }
+    private boolean loadFragment(Fragment fragment) {
+        if (fragment != null) {
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .commit();
+            return true;
+        }
+        return false;
+    }
     void loadData(){
 
         Call<GetAccount> accountCall=mApiInterface.getAccount();
         accountCall.enqueue(new Callback<GetAccount>() {
             @Override
             public void onResponse(Call<GetAccount> call, Response<GetAccount> response) {
+                if(response.body().getData()==null)return;
                 List<Account> accounts= response.body().getData();
                 Log.d("Retrofit Get", "Jumlah data Kontak: " +
                         String.valueOf(accounts.size()));
