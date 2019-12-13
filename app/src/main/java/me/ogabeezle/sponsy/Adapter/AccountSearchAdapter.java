@@ -21,24 +21,25 @@ import java.util.List;
 
 import me.ogabeezle.sponsy.Model.Account;
 import me.ogabeezle.sponsy.R;
-import me.ogabeezle.sponsy.ui.home.HomeFragment;
 import me.ogabeezle.sponsy.ui.deskripsi.DeskripsiFragment;
+import me.ogabeezle.sponsy.ui.search.SearchFragment;
 
-public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.CarouselHolder> {
+public class AccountSearchAdapter extends RecyclerView.Adapter<AccountSearchAdapter.CarouselHolder> {
     private List<Account> arr;
     private Context context;
-    private HomeFragment fragment;
+    private SearchFragment searchFragment;
 
-    public AccountAdapter(List<Account> arr, Context context,HomeFragment fragment) {
+    public AccountSearchAdapter(List<Account> arr, Context context,SearchFragment searchFragment) {
         this.context = context;
         this.arr = arr;
-        this.fragment=fragment;
+        this.searchFragment=searchFragment;
+
     }
 
     @NonNull
     @Override
     public CarouselHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new CarouselHolder(LayoutInflater.from(context).inflate(R.layout.item_card, parent, false));
+        return new CarouselHolder(LayoutInflater.from(context).inflate(R.layout.item_card_search, parent, false));
     }
 
     @Override
@@ -57,9 +58,10 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.Carousel
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragment.loadFragment(new DeskripsiFragment(model));
+                searchFragment.loadFragment(new DeskripsiFragment(model));
             }
         });
+
     }
 
     @Override

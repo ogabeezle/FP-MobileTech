@@ -18,21 +18,23 @@ android:layout_height="match_parent">
             android:layout_marginRight="20dp"
             android:background="@drawable/ic_arrow_back_grey_24dp"/>
         <LinearLayout
-            android:id="@+id/search_bar"
             android:layout_width="300dp"
             android:layout_height="35dp"
             android:background="@drawable/square_search">
             <View
+                android:id="@+id/search_icon"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/search_icon_grey"/>
-            <TextView
+            <EditText
+                android:id="@+id/search_bar1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cari Acara..."
+                android:hint="Cari Acara..."
+                android:textSize="10dp"
                 android:textColor="@color/verydarkgrey"
                 android:layout_gravity="center_vertical"/>
         </LinearLayout>
@@ -42,7 +44,7 @@ android:layout_height="match_parent">
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="gone">
+        >
 
     </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>

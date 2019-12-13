@@ -1,5 +1,6 @@
 package me.ogabeezle.sponsy;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -13,10 +14,14 @@ import me.ogabeezle.sponsy.ui.home.HomeFragment;
 import me.ogabeezle.sponsy.ui.profile.ProfileFragment;
 
 public class MainActivity extends AppCompatActivity {
-
+    public static Context contextOfApplication;
+    public static Context getContextOfApplication(){
+        return contextOfApplication;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        contextOfApplication=getApplicationContext();
         setContentView(R.layout.activity_main);
 
         BottomNavigationView navView = findViewById(R.id.bottom_navigation);

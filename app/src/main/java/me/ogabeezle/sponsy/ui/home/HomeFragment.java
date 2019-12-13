@@ -6,6 +6,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -26,6 +27,8 @@ import me.ogabeezle.sponsy.Model.GetAccount;
 import me.ogabeezle.sponsy.R;
 import me.ogabeezle.sponsy.Rest.ApiClient;
 import me.ogabeezle.sponsy.Rest.ApiInterface;
+import me.ogabeezle.sponsy.ui.category.CategoryFragment;
+import me.ogabeezle.sponsy.ui.search.SearchFragment;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -53,8 +56,8 @@ public class HomeFragment extends Fragment {
         adsCarousel.setAdapter(adsCarouselAdapter);
 
 
-//        recommendForYouCarousel = (RecyclerView) root.findViewById(R.id.rekomendasiacaracarousel);
-//        recommendForYouCarousel.setLayoutManager(new LinearLayoutManager(root.getContext(),RecyclerView.HORIZONTAL,false));
+        recommendForYouCarousel = (RecyclerView) root.findViewById(R.id.rekomendasiacaracarousel);
+        recommendForYouCarousel.setLayoutManager(new LinearLayoutManager(root.getContext(),RecyclerView.HORIZONTAL,false));
 //        recommendedItemCarouselAdapter = new ItemCarouselAdapter(recommendForYouItem,root.getContext());
 //        recommendForYouCarousel.setAdapter(recommendedItemCarouselAdapter);
 //
@@ -67,20 +70,83 @@ public class HomeFragment extends Fragment {
         SnapHelper helper = new GravitySnapHelper(Gravity.CENTER);
         helper.attachToRecyclerView(adsCarousel);
         helper.attachToRecyclerView(recommendForYouCarousel);
+        loadButton();
         return root;
     }
 
-    void loadData(){
 
+    void loadButton(){
+        LinearLayout daftarButton = root.findViewById(R.id.search_bar);
+        daftarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFragment(new SearchFragment());
+            }
+        });
+        LinearLayout edukasiButton = root.findViewById(R.id.edukasi_button);
+        edukasiButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFragment(new CategoryFragment("edukasi"));
+            }
+        });
+        LinearLayout seniButton = root.findViewById(R.id.seni_button);
+        seniButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFragment(new CategoryFragment("seni"));
+            }
+        });
+        LinearLayout olahragaButton = root.findViewById(R.id.olahraga_button);
+        olahragaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFragment(new CategoryFragment("olahraga"));
+            }
+        });
+        LinearLayout musicButton = root.findViewById(R.id.music_button);
+        musicButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFragment(new CategoryFragment("musik"));
+            }
+        });
+        LinearLayout othersButton = root.findViewById(R.id.others_button);
+        othersButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFragment(new CategoryFragment("lainnya"));
+            }
+        });
+    }
+    public boolean loadFragment(Fragment fragment) {
+        if (fragment != null) {
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .commit();
+            return true;
+        }
+        return false;
+    }
+    void loadData(){
+        final HomeFragment temp=this;
         Call<GetAccount> accountCall=mApiInterface.getAccount();
         accountCall.enqueue(new Callback<GetAccount>() {
             @Override
             public void onResponse(Call<GetAccount> call, Response<GetAccount> response) {
+                if(response.body().getData()==null)return;
                 List<Account> accounts= response.body().getData();
+                List<Account> newacc=new ArrayList<>();
+                int i=0;
+                for(Account acc :accounts){
+                    if(i==10) break;
+                    newacc.add(acc);
+                    i++;
+                }
                 Log.d("Retrofit Get", "Jumlah data Kontak: " +
                         String.valueOf(accounts.size()));
-                accountAdapter = new AccountAdapter(accounts,root.getContext());
-                ((RecyclerView)root.findViewById(R.id.rekomendasiacaracarousel)).setAdapter(accountAdapter);
+                accountAdapter = new AccountAdapter(newacc,root.getContext(),temp);
+                recommendForYouCarousel.setAdapter(accountAdapter);
             }
 
             @Override
